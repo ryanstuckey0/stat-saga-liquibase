@@ -1,0 +1,16 @@
+databaseChangeLog:
+  - preConditions:
+      - dbms:
+          type: h2
+  - changeSet:
+      id: h2_schema_init
+      author: test_only
+      changes:
+        - sql:
+            sql: create schema statsaga;
+        - sql:
+            sql: grant alter any schema to liquibase;
+        - sql:
+            sql: grant all on schema statsaga to liquibase;
+        - sql: 
+            sql: grant all on databasechangelog,databasechangeloglock to liquibase;
