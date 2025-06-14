@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - changeSet:
+    id: USER_backend_user
+    author: ryanstuckey0
+    changes: 
+      - sql:
+          dbms: h2
+          sql: create user backend_user password 'letmein';
+      - sql:
+          dbms: h2
+          sql: grant all on schema statsaga to backend_user;
