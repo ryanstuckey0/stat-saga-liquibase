@@ -1,0 +1,19 @@
+databaseChangeLog:
+  - preConditions:
+    - runningAs:
+        username: liquibase
+  - changeSet:
+      id: drop_original_liquibase_table
+      author: TEST_ONLY
+      comment: Dropping Liquibase tables created before statsaga schema was created.
+      changes:
+        - dropTable:
+            schemaName: public
+            tableName: databasechangelog
+        - dropTable:
+            schemaName: public
+            tableName: databasechangeloglock
+  - includeAll:
+      path: ../changelog/
+                
+        
