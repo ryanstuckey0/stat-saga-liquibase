@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - preConditions:
+    - runningAs:
+        username: liquibase
+  - includeAll:
+      path: ../changelog/
+        
