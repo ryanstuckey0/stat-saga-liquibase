@@ -1,0 +1,38 @@
+databaseChangeLog:
+  - changeSet:
+      id: TABLE_CREATE_game
+      author: ryanstuckey0
+      changes:
+        - createTable:
+            tableName: game
+            remarks: Table used to hold games as they are encountered by users
+            columns:
+              - column:
+                  name: id
+                  type: bigint unsigned
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: creation_timestamp
+                  type: datetime
+                  constraints:
+                    nullable: false
+              - column:
+                  name: update_timestamp
+                  type: datetime
+                  constraints:
+                    nullable: false
+              - column:
+                  name: steam_app_id
+                  type: bigint unsigned
+              - column:
+                  name: name
+                  type: varchar(200)
+              - column:
+                  name: steam_game_icon_url
+                  type: varchar(100)
+              - column:
+                  name: steam_game_logo_url
+                  type: varchar(100)

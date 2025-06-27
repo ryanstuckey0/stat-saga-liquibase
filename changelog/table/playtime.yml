@@ -1,0 +1,100 @@
+databaseChangeLog:
+  - changeSet:
+      id: TABLE_CREATE_playtime
+      author: ryanstuckey0
+      changes:
+        - createTable:
+            tableName: playtime
+            remarks: Table used to hold daily playtime records for users
+            columns:
+              - column:
+                  name: id
+                  type: bigint unsigned
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: creation_timestamp
+                  type: datetime
+                  constraints:
+                    nullable: false
+              - column:
+                  name: update_timestamp
+                  type: datetime
+                  constraints:
+                    nullable: false
+              - column:
+                  name: game_id
+                  type: bigint unsigned
+                  constraints:
+                    nullable: false
+              - column:
+                  name: app_user_id
+                  type: bigint unsigned
+                  constraints:
+                    nullable: false
+              - column:
+                  name: playtime_forever
+                  type: int unsigned
+              - column:
+                  name: playtime_2weeks
+                  type: int unsigned
+              - column:
+                  name: playtime_linux_forever
+                  type: int unsigned
+              - column:
+                  name: playtime_mac_forever
+                  type: int unsigned
+              - column:
+                  name: playtime_windows_forever
+                  type: int unsigned
+              - column:
+                  name: playtime_deck_forever
+                  type: int unsigned
+              - column:
+                  name: diff_playtime_forever
+                  type: int unsigned
+              - column:
+                  name: diff_playtime_2weeks
+                  type: int unsigned
+              - column:
+                  name: diff_playtime_linux
+                  type: int unsigned
+              - column:
+                  name: diff_playtime_mac
+                  type: int unsigned
+              - column:
+                  name: diff_playtime_windows
+                  type: int unsigned
+              - column:
+                  name: diff_playtime_deck
+                  type: int unsigned
+              - column:
+                  name: first_user_entry
+                  type: boolean
+                  constraints:
+                    nullable: false
+              - column:
+                  name: first_game_entry
+                  type: boolean
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseColumnNames: game_id
+            baseTableName: playtime
+            constraintName: fk_playtime_game
+            onDelete: RESTRICT
+            onUpdate: CASCADE
+            referencedColumnNames: id
+            referencedTableName: game
+            validate: true
+        - addForeignKeyConstraint:
+            baseColumnNames: app_user_id
+            baseTableName: playtime
+            constraintName: fk_playtime_app_user
+            onDelete: RESTRICT
+            onUpdate: CASCADE
+            referencedColumnNames: id
+            referencedTableName: app_user
+            validate: true
