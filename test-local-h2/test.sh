@@ -14,7 +14,7 @@ run_test () {
     echo
 
     # get H2 PID
-    h2_pid="$(ps | grep 'liquibase-core.jar init start-h2' | grep -v grep | grep -oE '^[0-9]*')"
+    h2_pid="$(ps | grep 'liquibase-core.jar init start-h2' | grep -v grep | grep -oE '^[ ]{0,1}[0-9]*' | grep -oE '[0-9]*')"
     echo "H2 PID: $h2_pid"
 
     # get H2 browser URL
@@ -31,7 +31,7 @@ run_test () {
     echo
 
     # run regular Liquibase updates
-    echo "$HEADER Liquibase init changes running $HEADER"
+    echo "$HEADER Liquibase regular changes running $HEADER"
     cd ..
     liquibase update
     echo $FOOTER
