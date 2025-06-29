@@ -1,0 +1,21 @@
+databaseChangeLog:
+  - changeSet:
+      id: USER_CREATE_backend_user
+      author: ryanstuckey0
+      changes: 
+        - sql:
+            dbms: h2
+            sql: create user backend_user password 'mydatabasepassword';
+        - sql:
+            dbms: h2
+            sql: grant all on schema statsaga to backend_user;
+        - sql:
+            dbms: mysql
+            sql: CREATE USER 'backend_user'@'%' IDENTIFIED BY 'mydatabasepassword';
+        - sql:
+            dbms: mysql
+            sql: GRANT SELECT,UPDATE,INSERT,DELETE ON statsaga.* TO 'backend_user';
+        - sql:
+            dbms: mysql
+            sql: FLUSH PRIVILEGES;
+        

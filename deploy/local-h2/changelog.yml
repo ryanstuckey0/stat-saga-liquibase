@@ -3,4 +3,6 @@ databaseChangeLog:
     - runningAs:
         username: liquibase
   - includeAll:
-      path: changelog/
+      path: ../../changelog/
+                
+        

@@ -1,0 +1,15 @@
+databaseChangeLog:
+  - preConditions:
+      - dbms:
+          type: mysql
+  - changeSet:
+      id: mysql_schema_init
+      author: root_db_initializer
+      comment: 
+      changes:
+        - sql:
+            sql: create schema statsaga;
+        - sql:
+            sql: GRANT ALL PRIVILEGES ON statsaga.* TO 'liquibase' WITH GRANT OPTION;
+        - sql:
+            sql: GRANT RELOAD ON *.* TO 'liquibase';

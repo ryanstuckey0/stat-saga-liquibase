@@ -1,0 +1,42 @@
+databaseChangeLog:
+  - changeSet:
+      id: TABLE_CREATE_app_user
+      author: ryanstuckey0
+      changes:
+        - createTable:
+            tableName: app_user
+            remarks: Table used to hold application users
+            columns:
+              - column:
+                  name: id
+                  type: bigint unsigned
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: creation_timestamp
+                  type: datetime
+                  constraints:
+                    nullable: false
+              - column:
+                  name: update_timestamp
+                  type: datetime
+                  constraints:
+                    nullable: false
+              - column: 
+                  name: steam_user_id
+                  type: bigint unsigned
+                  constraints:
+                    unique: true
+              - column: 
+                  name: username
+                  type: varchar(50)
+                  constraints:
+                    unique: true
+                    nullable: false
+              - column:
+                  name: email
+                  type: varchar(50)
+                  constraints:
+                    unique: true

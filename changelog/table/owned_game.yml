@@ -1,0 +1,68 @@
+databaseChangeLog:
+  - changeSet:
+      id: TABLE_CREATE_owned_game
+      author: ryanstuckey0
+      changes:
+        - createTable:
+            tableName: owned_game
+            remarks: Table used to hold owned game records for users
+            columns:
+              - column:
+                  name: id
+                  type: bigint unsigned
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: creation_timestamp
+                  type: datetime
+                  constraints:
+                    nullable: false
+              - column:
+                  name: update_timestamp
+                  type: datetime
+                  constraints:
+                    nullable: false
+              - column:
+                  name: game_id
+                  type: bigint unsigned
+                  constraints:
+                    nullable: false
+              - column:
+                  name: app_user_id
+                  type: bigint unsigned
+                  constraints:
+                    nullable: false
+              - column:
+                  name: date_first_played
+                  type: date
+              - column: 
+                  name: date_last_played
+                  type: date
+              - column: 
+                  name: date_first_seen
+                  type: date
+                  constraints:
+                    nullable: false
+              - column:
+                  name: playtime
+                  type: int
+        - addForeignKeyConstraint:
+            baseColumnNames: app_user_id
+            baseTableName: owned_game
+            constraintName: fk_owned_game_app_user
+            onDelete: RESTRICT
+            onUpdate: CASCADE
+            referencedColumnNames: id
+            referencedTableName: app_user
+            validate: true
+        - addForeignKeyConstraint:
+            baseColumnNames: game_id
+            baseTableName: owned_game
+            constraintName: fk_owned_game_game
+            onDelete: RESTRICT
+            onUpdate: CASCADE
+            referencedColumnNames: id
+            referencedTableName: game
+            validate: true
