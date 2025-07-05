@@ -14,5 +14,3 @@ databaseChangeLog:
             sql: grant all on schema statsaga to liquibase;
         - sql: 
             sql: grant all on databasechangelog,databasechangeloglock to liquibase;
-        - sql:
-            sql: flush privileges;

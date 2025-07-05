@@ -1,0 +1,24 @@
+databaseChangeLog:
+  - changeSet:
+      id: USER_CREATE_backend_app
+      author: ryanstuckey0
+      changes: 
+        - sql:
+            dbms: h2
+            sql: create user backend_app password 'letmein';
+        - sql:
+            dbms: mysql
+            sql: CREATE USER 'backend_app'@'%' IDENTIFIED BY 'letmein';
+  - changeSet:
+      id: USER_GRANT_backend_app
+      author: ryanstuckey0
+      changes:
+        - sql:
+            dbms: h2
+            sql: grant all on schema statsaga to backend_app;
+        - sql:
+            dbms: mysql
+            sql: GRANT 'app_rw' TO 'backend_app';
+        - sql:
+            dbms: mysql
+            sql: SET DEFAULT ROLE 'app_rw' TO 'backend_app';

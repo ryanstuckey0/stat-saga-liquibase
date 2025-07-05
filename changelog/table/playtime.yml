@@ -80,6 +80,10 @@ databaseChangeLog:
                   type: boolean
                   constraints:
                     nullable: false
+  - changeSet:
+      id: TABLE_FK_playtime
+      author: ryanstuckey0
+      changes:
         - addForeignKeyConstraint:
             baseColumnNames: game_id
             baseTableName: playtime

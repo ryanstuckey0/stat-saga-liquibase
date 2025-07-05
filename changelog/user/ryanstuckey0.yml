@@ -1,0 +1,24 @@
+databaseChangeLog:
+  - changeSet:
+      id: USER_CREATE_ryanstuckey0
+      author: ryanstuckey0
+      changes: 
+        - sql:
+            dbms: h2
+            sql: create user ryanstuckey0 password 'letmein';
+        - sql:
+            dbms: mysql
+            sql: CREATE USER 'ryanstuckey0'@'%' IDENTIFIED BY 'letmein';
+  - changeSet:
+      id: USER_GRANT_ryanstuckey0
+      author: ryanstuckey0
+      changes:
+        - sql:
+            dbms: h2
+            sql: grant all on schema statsaga to ryanstuckey0;
+        - sql:
+            dbms: mysql
+            sql: GRANT 'dba' TO 'ryanstuckey0';
+        - sql:
+            dbms: mysql
+            sql: SET DEFAULT ROLE 'dba' TO 'ryanstuckey0';

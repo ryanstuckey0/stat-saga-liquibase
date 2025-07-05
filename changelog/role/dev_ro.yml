@@ -1,0 +1,20 @@
+databaseChangeLog:
+  - changeSet:
+      id: ROLE_CREATE_dev_ro
+      author: ryanstuckey0
+      changes:
+        - sql:
+            dbms: mysql
+            sql: CREATE ROLE 'dev_ro';
+      rollback:
+        - sql:
+            dbms: mysql
+            sql: DROP ROLE IF EXISTS 'dev_ro';
+  - changeSet:
+      id: ROLE_GRANT_dev_ro
+      author: ryanstuckey0
+      changes:
+        - sql:
+            dbms: mysql
+            sql: GRANT SELECT ON statsaga.* TO 'dev_ro';
+        
