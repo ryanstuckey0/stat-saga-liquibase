@@ -8,8 +8,6 @@ databaseChangeLog:
       comment: 
       changes:
         - sql:
-            sql: create schema statsaga;
-        - sql:
-            sql: GRANT ALL PRIVILEGES ON statsaga.* TO 'liquibase' WITH GRANT OPTION;
+            sql: GRANT ALL PRIVILEGES ON *.* TO 'liquibase' WITH GRANT OPTION;
         - sql:
             sql: GRANT RELOAD ON *.* TO 'liquibase';
