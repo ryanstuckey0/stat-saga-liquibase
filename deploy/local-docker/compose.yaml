@@ -13,10 +13,10 @@ services:
     ports:
       - 3306:3306
     environment:
-      - MYSQL_ROOT_PASSWORD=letmein
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
       - MYSQL_DATABASE=statsaga
-      - MYSQL_USER=liquibase
-      - MYSQL_PASSWORD=letmein
+      - MYSQL_USER=${MYSQL_LIQUIBASE_USERNAME}
+      - MYSQL_PASSWORD=${MYSQL_LIQUIBASE_PASSWORD}
     volumes:
       - mysql_vol:/var/lib/mysql
     healthcheck:

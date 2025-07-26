@@ -5,6 +5,15 @@ FOOTER="========================================================================
 user_input="a"
 
 run_test () {
+    export MYSQL_ROOT_USERNAME="$(op read op://statsaga-test/pgho2plq5p3sytjd7qvoel5lzq/username)"
+    export MYSQL_ROOT_PASSWORD="$(op read op://statsaga-test/pgho2plq5p3sytjd7qvoel5lzq/password)"
+
+    export MYSQL_LIQUIBASE_USERNAME="$(op read op://statsaga-test/7qfr2772onbsjilp7c2pzeogea/username)"
+    export MYSQL_LIQUIBASE_PASSWORD="$(op read op://statsaga-test/7qfr2772onbsjilp7c2pzeogea/password)"
+
+    export LIQUIBASE_COMMAND_USERNAME=$MYSQL_ROOT_USERNAME
+    export LIQUIBASE_COMMAND_PASSWORD=$MYSQL_ROOT_PASSWORD
+
     # start H2
     echo "$HEADER Starting MySQL in Docker $HEADER"
     docker compose up -d
@@ -21,6 +30,9 @@ run_test () {
     echo
     echo
 
+    export LIQUIBASE_COMMAND_USERNAME=$MYSQL_LIQUIBASE_USERNAME
+    export LIQUIBASE_COMMAND_PASSWORD=$MYSQL_LIQUIBASE_PASSWORD
+
     # run regular Liquibase updates
     echo "$HEADER liquibase update: existing changes running $HEADER"
     cd ..
@@ -28,6 +40,9 @@ run_test () {
     echo $FOOTER
     echo
     echo
+
+    unset LIQUIBASE_COMMAND_USERNAME
+    unset LIQUIBASE_COMMAND_PASSWORD
 
     echo "Liquibase updates complete. Check output for status."
 }
