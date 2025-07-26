@@ -1,0 +1,45 @@
+databaseChangeLog:
+  - changeSet:
+      id: TABLE_CREATE_job_history
+      author: ryanstuckey0
+      changes:
+        - createTable:
+            tableName: job_history
+            remarks: Table used to hold history of job runs
+            columns:
+              - column:
+                  name: id
+                  type: bigint unsigned
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: creation_timestamp
+                  type: datetime
+                  constraints:
+                    nullable: false
+              - column:
+                  name: update_timestamp
+                  type: datetime
+                  constraints:
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: start_time
+                  type: datetime
+              - column:
+                  name: end_time
+                  type: datetime
+              - column:
+                  name: error_message
+                  type: text
